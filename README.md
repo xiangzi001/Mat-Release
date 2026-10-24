@@ -1,6 +1,7 @@
 # Mat
 
 Copyright (C) 2026 xiangzi001 <https://github.com/xiangzi001/Mat>
+For details, see Mat-release-必读.txt.
 
 ## License
 
