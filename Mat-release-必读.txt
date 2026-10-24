@@ -6,9 +6,14 @@
 这个库可以使用自定义的模板，如分式、根式、float128等等（必须定义相应的基本函数，有些函数可能用不了）
 还提供了更多高精度方法，如Jacobi的EVD_H和SVD，GramSchmidt的QR
 
-如果硬件，可以启用AVX512，就在头文件Mat.h的最前面加上#define __AVX512__
+使用
+1.添加
+#include "Base/Base.h"
+#include "Mat-release-0.0/Mat.h"
 
-如果是控制台，可以添加输入输出（输入时矩阵大小已经给定）
+2.如果有AVX512硬件，并且希望启用AVX512，就在头文件Mat.h的最前面加上#define __AVX512__
+
+3.如果是控制台，可以添加输入输出（输入时矩阵大小必须已经给定）
 template<typename T>
 istream& operator >> (istream& in, MAT<T>& A) {
 	for (int i = 0; i < A.rows; ++i) {
@@ -28,7 +33,6 @@ istream& operator >> (istream& in, MAT<T>& A) {
 	}
 	return in;
 }
-
 template<typename T>
 ostream& operator << (ostream& out, __BlockMat<T>& A) {
 	for (int x = 0; x < A.rows; ++x) {
@@ -38,10 +42,11 @@ ostream& operator << (ostream& out, __BlockMat<T>& A) {
 		}
 		out << endl;
 	}
-
 	return out;
 }
 
+
+介绍
 0.0
 这是第1个正式发布版
 
