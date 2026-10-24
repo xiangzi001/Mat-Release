@@ -8,6 +8,40 @@
 
 如果硬件，可以启用AVX512，就在头文件Mat.h的最前面加上#define __AVX512__
 
+如果是控制台，可以添加输入输出（输入时矩阵大小已经给定）
+template<typename T>
+istream& operator >> (istream& in, MAT<T>& A) {
+	for (int i = 0; i < A.rows; ++i) {
+		string line;
+		getline(in, line);
+		if (line.size() == 0) {
+			getline(in, line);
+		}
+		for (int i = 0; i < line.size(); ++i) {
+			if (line[i] == ',') line[i] = ' ';
+		}
+
+		istringstream iss(line);
+		for (int j = 0; j < A.cols; ++j) {
+			iss >> A(i, j);
+		}
+	}
+	return in;
+}
+
+template<typename T>
+ostream& operator << (ostream& out, __BlockMat<T>& A) {
+	for (int x = 0; x < A.rows; ++x) {
+		for (int y = 0; y < A.cols; ++y) {
+			out << A[y][x];
+			out << ",";
+		}
+		out << endl;
+	}
+
+	return out;
+}
+
 0.0
 这是第1个正式发布版
 
