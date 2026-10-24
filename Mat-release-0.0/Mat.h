@@ -55,11 +55,9 @@ enum SVD_type {
 	SVD_Jacobi
 };
 
-#ifdef  __AVX512__
+#define __AVX2__
 
-#ifndef __BlockSize_Mul_Vec
-#define __BlockSize_Mul_Vec 512
-#endif // !__BlockSize_Mul_Vec
+#ifdef  __AVX512__
 
 #ifndef __BlockSize_Mul_MC
 #define __BlockSize_Mul_MC 288
